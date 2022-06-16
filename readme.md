@@ -1,6 +1,5 @@
 # 📚 React Cheat Sheet
-This repository is a cheat sheet to React for daily use. It contain a lot of snippets from my own use / official documentation and i'll improve it soon !  
-It's made for people like me who like to continue have a overview of some snippets.
+This repository is a cheat sheet to React for daily use.
 
 ## Table of Contents
 
@@ -36,27 +35,28 @@ ReactDOM.render(
 ```javascript
 // JSX produce React Element
 const item = <h1>My JSX Element</h1>;
-```
 
-```javascript
 // Use curly braces to embed some Javascript
 const item = <div>{getContent()}</div>;
-```
 
-```javascript
 // Use camelCase for attribute name
 const item = <div className="example"></div>;
-```
 
-```javascript
 // Use curly braces to embed some Javascript
 const item = <img src={image.url}></img>;
-```
 
-```javascript
 // Self close if tag is empty
 const item = <div />;
 ```
+
+* while using images in react avoid using direct path src , use instead a variable where you import image and then use it in src
+```javascript
+import Logo from "./images/my-logo.png"
+
+<img src={Logo} />
+```
+* when using styles import it before using
+
 **[⬆ Go to top](#table-of-contents)**
 
 ### Components
@@ -696,3 +696,26 @@ function userReducer(state = initialState, action) {
 ```
 
 **[⬆ Go to top](#table-of-contents)**
+------------------------------------------------------------------------
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
