@@ -20,9 +20,7 @@ ReactDOM.render(
   <h1>Hello, world!</h1>,
   document.getElementById('root')
 );
-```
 
-```javascript
 // Render Component into a DOM element
 ReactDOM.render(
   <MyComponent />,
@@ -65,16 +63,12 @@ import Logo from "./images/my-logo.png"
 function Heading(props) {
   return <h1>{props.title}</h1>;
 }
-```
 
-```javascript
 // Stateless Functional Component (with arrow function)
 const Heading = (props) => {
   return <h1>{props.title}</h1>;
 }
-```
 
-```javascript
 // ES6 Class Component, can have states
 class Heading extends React.Component {
   render() {
@@ -95,30 +89,22 @@ class Heading extends React.Component {
 render() {
   return <div>Example of return<div />
 }
-```
 
-```javascript
 // Return Another Component
 render() {
   return <MyComponent />
 }
-```
 
-```javascript
 // Return String
 render() {
   return 'Return a string works!'
 }
-```
 
-```javascript
 // Return Numbers (rendered as text node)
 render() {
   return 100
 }
-```
 
-```javascript
 // Return nothing
 render() {
   return null
@@ -128,51 +114,23 @@ render() {
 
 ### Component Lifecycle
 ```javascript
-componentWillMount() {
+componentWillMount() {}
 
-}
-```
-
-```javascript
 componentDidMount() {
   // Call after the component output has been rendered in the DOM
 }
-```
 
-```javascript
-componentWillReceiveProps() {
+componentWillReceiveProps() {}
 
-}
-```
+shouldComponentUpdate() {}
 
-```javascript
-shouldComponentUpdate() {
+componentWillUpdate() {}
 
-}
-```
+componentDidUpdate() {}
 
-```javascript
-componentWillUpdate() {
+componentWillUnmount() {}
 
-}
-```
-
-```javascript
-componentDidUpdate() {
-
-}
-```
-
-```javascript
-componentWillUnmount() {
-
-}
-```
-
-```javascript
-componentDidCatch() {
-
-}
+componentDidCatch() {}
 ```
 **[⬆ Go to top](#table-of-contents)**
 
@@ -191,6 +149,17 @@ function Heading(props) {
 State are locals and fully controlled by the component itself.
 
 ```javascript
+// Declare initial state in constructor
+class Heading extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {title: 'My title'};
+  }
+}
+```
+
+
+```javascript
 // Update state with setState, except in constructor
 this.setState({
   title: 'Updated title',
@@ -205,17 +174,7 @@ this.setState((prevState, props) => {
 ```
 
 ```javascript
-// Declare initial state in constructor
-class Heading extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {title: 'My title'};
-  }
-}
-```
-
-```javascript
-// Do not update state directly
+// NOTE: Do not update state directly
 this.state.title = 'Hello';
 ```
 
