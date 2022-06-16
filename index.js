@@ -1,5 +1,5 @@
 const fs = require('fs');
-const data = fs.readFileSync('react.md', 'utf8');
+const data = fs.readFileSync('redme.md', 'utf8');
 
 var md = require('markdown-it')()
 var result = md.render(data);
