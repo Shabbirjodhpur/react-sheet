@@ -27,7 +27,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### JSX
 ```javascript
@@ -55,7 +55,7 @@ import Logo from "./images/my-logo.png"
 ```
 * when using styles import it before using
 
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Components
 ```javascript
@@ -81,7 +81,7 @@ class Heading extends React.Component {
 // Always start component names with capital
 <Heading />
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Render
 ```javascript
@@ -110,7 +110,7 @@ render() {
   return null
 }
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Component Lifecycle
 ```javascript
@@ -132,7 +132,7 @@ componentWillUnmount() {}
 
 componentDidCatch() {}
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Props (Properties)
 Props are immutable.
@@ -143,7 +143,7 @@ function Heading(props) {
   return <h1>{props.title}</h1>;
 }
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### State
 State are locals and fully controlled by the component itself.
@@ -214,7 +214,7 @@ class Input extends React.Component {
   }
 }
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Handling Event
 ```javascript
@@ -245,7 +245,7 @@ constructor(props) {
 <button onClick={(e) => this.deleteItem(id, e)}>Delete item</button>
 <button onClick={this.deleteItem.bind(this, id)}>Delete item</button>
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Conditional Rendering
 ```javascript
@@ -311,7 +311,7 @@ function Modal(props) {
 }
 ```
 
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Portal
 ```javascript
@@ -326,7 +326,7 @@ class MyPortalComponent extends React.Component {
   }
 }
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Fragment
 ```javascript
@@ -365,7 +365,7 @@ render() {
   );
 }
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Forms
 
@@ -447,7 +447,7 @@ render() {
   );
 }
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### React without JSX
 ```javascript
@@ -464,7 +464,7 @@ const element = React.createElement(
   'Hello!'
 );
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Typechecking props with PropTypes
 ```javascript
@@ -527,14 +527,14 @@ MyComponent.propTypes = {
   optionalNode: PropTypes.node,
 };
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Create React App
 ```bash
 # Create new app
 create-react-app my-app
 ```
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ### Fetch datas
 ```javascript
@@ -571,7 +571,7 @@ componentDidMount() {
 }
 ```
 
-**[⬆ Go to top](#table-of-contents)**
+---------------------------------------------------------------------------
 
 ## 2 - Redux
 ### Install Redux
