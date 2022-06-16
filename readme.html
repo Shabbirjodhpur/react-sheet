@@ -1,0 +1,550 @@
+<h1>📚 React Cheat Sheet</h1>
+<p>This repository is a cheat sheet to React for daily use. It contain a lot of snippets from my own use / official documentation and i'll improve it soon !<br>
+It's made for people like me who like to continue have a overview of some snippets.</p>
+<h2>Table of Contents</h2>
+<ol>
+<li><strong><a href="#1---react">React</a></strong></li>
+<li><strong><a href="#2---redux">Redux</a></strong></li>
+</ol>
+<h2>1 - React</h2>
+<h3>Use React</h3>
+<pre><code class="language-javascript">// Import React and ReactDOM
+import React from 'react'
+import ReactDOM from 'react-dom'
+</code></pre>
+<pre><code class="language-javascript">// Render JSX into a DOM element
+ReactDOM.render(
+  &lt;h1&gt;Hello, world!&lt;/h1&gt;,
+  document.getElementById('root')
+);
+</code></pre>
+<pre><code class="language-javascript">// Render Component into a DOM element
+ReactDOM.render(
+  &lt;MyComponent /&gt;,
+  document.getElementById('root')
+);
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>JSX</h3>
+<pre><code class="language-javascript">// JSX produce React Element
+const item = &lt;h1&gt;My JSX Element&lt;/h1&gt;;
+</code></pre>
+<pre><code class="language-javascript">// Use curly braces to embed some Javascript
+const item = &lt;div&gt;{getContent()}&lt;/div&gt;;
+</code></pre>
+<pre><code class="language-javascript">// Use camelCase for attribute name
+const item = &lt;div className=&quot;example&quot;&gt;&lt;/div&gt;;
+</code></pre>
+<pre><code class="language-javascript">// Use curly braces to embed some Javascript
+const item = &lt;img src={image.url}&gt;&lt;/img&gt;;
+</code></pre>
+<pre><code class="language-javascript">// Self close if tag is empty
+const item = &lt;div /&gt;;
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Components</h3>
+<pre><code class="language-javascript">// Stateless Functional Component
+function Heading(props) {
+  return &lt;h1&gt;{props.title}&lt;/h1&gt;;
+}
+</code></pre>
+<pre><code class="language-javascript">// Stateless Functional Component (with arrow function)
+const Heading = (props) =&gt; {
+  return &lt;h1&gt;{props.title}&lt;/h1&gt;;
+}
+</code></pre>
+<pre><code class="language-javascript">// ES6 Class Component, can have states
+class Heading extends React.Component {
+  render() {
+    return &lt;h1&gt;{this.props.title}&lt;/h1&gt;;
+  }
+}
+</code></pre>
+<pre><code class="language-javascript">// Always start component names with capital
+&lt;Heading /&gt;
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Render</h3>
+<pre><code class="language-javascript">// Return React Element
+render() {
+  return &lt;div&gt;Example of return&lt;div /&gt;
+}
+</code></pre>
+<pre><code class="language-javascript">// Return Another Component
+render() {
+  return &lt;MyComponent /&gt;
+}
+</code></pre>
+<pre><code class="language-javascript">// Return String
+render() {
+  return 'Return a string works!'
+}
+</code></pre>
+<pre><code class="language-javascript">// Return Numbers (rendered as text node)
+render() {
+  return 100
+}
+</code></pre>
+<pre><code class="language-javascript">// Return nothing
+render() {
+  return null
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Component Lifecycle</h3>
+<pre><code class="language-javascript">componentWillMount() {
+
+}
+</code></pre>
+<pre><code class="language-javascript">componentDidMount() {
+  // Call after the component output has been rendered in the DOM
+}
+</code></pre>
+<pre><code class="language-javascript">componentWillReceiveProps() {
+
+}
+</code></pre>
+<pre><code class="language-javascript">shouldComponentUpdate() {
+
+}
+</code></pre>
+<pre><code class="language-javascript">componentWillUpdate() {
+
+}
+</code></pre>
+<pre><code class="language-javascript">componentDidUpdate() {
+
+}
+</code></pre>
+<pre><code class="language-javascript">componentWillUnmount() {
+
+}
+</code></pre>
+<pre><code class="language-javascript">componentDidCatch() {
+
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Props (Properties)</h3>
+<p>Props are immutable.</p>
+<pre><code class="language-javascript">// Component with a single valid argument : props
+function Heading(props) {
+  return &lt;h1&gt;{props.title}&lt;/h1&gt;;
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>State</h3>
+<p>State are locals and fully controlled by the component itself.</p>
+<pre><code class="language-javascript">// Update state with setState, except in constructor
+this.setState({
+  title: 'Updated title',
+});
+</code></pre>
+<pre><code class="language-javascript">// Set state with previous state
+this.setState((prevState, props) =&gt; {
+  return {count: prevState.count + 1};
+});
+</code></pre>
+<pre><code class="language-javascript">// Declare initial state in constructor
+class Heading extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {title: 'My title'};
+  }
+}
+</code></pre>
+<pre><code class="language-javascript">// Do not update state directly
+this.state.title = 'Hello';
+</code></pre>
+<pre><code class="language-javascript">// Lifting state up to share state between component
+class Wrapper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.state = {value: ''};
+  }
+
+  handleInputChange(value) {
+    this.setState({value});
+  }
+  render() {
+    const value = this.state.value;
+    return (
+        &lt;Input value={value} onInputChange={this.handleInputChange} /&gt;
+    );
+  }
+}
+
+class Input extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.props.onInputChange(e.target.value);
+  }
+
+  render() {
+    const value = this.props.value;
+    return &lt;input value={value} onChange={this.handleChange} /&gt;;
+  }
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Handling Event</h3>
+<pre><code class="language-javascript">// React Event are in camelCase
+&lt;button onClick={handleClick}&gt;
+  Action
+&lt;/button&gt;
+</code></pre>
+<pre><code class="language-javascript">// Use preventDefault instead of return false
+function handleClick(e) {
+  e.preventDefault();
+}
+
+</code></pre>
+<pre><code class="language-javascript">// Bind this to use it in the callback
+constructor(props) {
+  super(props);
+  this.handleClick = this.handleClick.bind(this);
+}
+</code></pre>
+<pre><code class="language-javascript">// Pass data to callback
+&lt;button onClick={(e) =&gt; this.deleteItem(id, e)}&gt;Delete item&lt;/button&gt;
+&lt;button onClick={this.deleteItem.bind(this, id)}&gt;Delete item&lt;/button&gt;
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Conditional Rendering</h3>
+<pre><code class="language-javascript">// Using if operator with props
+function Heading(props) {
+  const isHome = props.isHome;
+  if (isHome) {
+    return &lt;HomeHeading /&gt;;
+  }
+  return &lt;PageHeading /&gt;;
+}
+</code></pre>
+<pre><code class="language-javascript">// Using if operator with state
+render() {
+  const isHome = this.state.isHome;
+  let heading = null;
+  if (isHome) {
+    heading = &lt;HomeHeading /&gt;;
+  } else {
+    heading = &lt;PageHeading /&gt;;
+  }
+
+  return (
+    &lt;div&gt;
+      {heading}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-javascript">// Using ternary operator
+&lt;div&gt;
+  {isHome ? &lt;HomeHeading /&gt; : &lt;PageHeading /&gt;}
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">// Using logical operator
+&lt;div&gt;
+  {messages.length &gt; 0 &amp;&amp;
+    &lt;h1&gt;
+      You have messages
+    &lt;/h1&gt;
+  }
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">// Prevent component from rendering
+function Modal(props) {
+  if (!props.isShow) {
+    return null;
+  }
+
+  return (
+    &lt;div&gt;
+      Modal
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Portal</h3>
+<pre><code class="language-javascript">import { createPortal } from &quot;react-dom&quot;;
+
+class MyPortalComponent extends React.Component {
+  render() {
+    return createPortal(
+      this.props.children,
+      document.getElementById(&quot;node&quot;),
+    );
+  }
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Fragment</h3>
+<pre><code class="language-javascript">const Fragment = React.Fragment;
+
+render() {
+  return (
+    &lt;Fragment&gt;
+      Some text.
+      &lt;h2&gt;A heading&lt;/h2&gt;
+      Even more text.
+    &lt;/Fragment&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-javascript">render() {
+  return (
+    &lt;React.Fragment&gt;
+      Some text.
+      &lt;h2&gt;A heading&lt;/h2&gt;
+      Even more text.
+    &lt;React.Fragment&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-javascript">render() {
+  return (
+    &lt;&gt;
+      &lt;ComponentA /&gt;
+      &lt;ComponentB /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Forms</h3>
+<h4>Controlled Components</h4>
+<pre><code class="language-javascript">// In controlled component, each state mutation have an handler function
+class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({value: e.target.value});
+  }
+
+  handleSubmit(e) {
+    alert('Submitted value: ' + this.state.value);
+    e.preventDefault();
+  }
+
+  render() {
+    return (
+      &lt;form onSubmit={this.handleSubmit}&gt;
+        &lt;input type=&quot;text&quot; value={this.state.value} onChange={this.handleChange} /&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;
+      &lt;/form&gt;
+    );
+  }
+}
+</code></pre>
+<pre><code class="language-javascript">// Force to uppercase in handler
+handleChange(e) {
+  this.setState({value: e.target.value.toUpperCase()});
+}
+</code></pre>
+<pre><code class="language-javascript">// &lt;textarea&gt; in React use a value attribute
+&lt;textarea value={this.state.value} onChange={this.handleChange} /&gt;
+</code></pre>
+<pre><code class="language-javascript">// &lt;select&gt; use a value and not a selected attribute
+&lt;select value={this.state.value} onChange={this.handleChange}&gt;
+  &lt;option value=&quot;a&quot;&gt;Option A&lt;/option&gt;
+  &lt;option value=&quot;b&quot;&gt;Option B&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<pre><code class="language-javascript">// &lt;select value can have an array for multiple values
+&lt;select multiple={true} value={['a', 'b']}&gt;
+</code></pre>
+<pre><code class="language-javascript">// Handle multiple inputs with name attribute
+handleInputChange(e) {
+  const target = e.target;
+  const value = target.value;
+  const name = target.name;
+
+  this.setState({
+    [name]: value
+  });
+}
+
+render() {
+  return (
+    &lt;form&gt;
+      &lt;input name=&quot;firstName&quot; onChange={this.handleInputChange} /&gt;
+      &lt;input name=&quot;lastName&quot; onChange={this.handleInputChange} /&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>React without JSX</h3>
+<pre><code class="language-javascript">// This two elements are similar :
+const element = (
+  &lt;h1 className=&quot;heading&quot;&gt;
+    Hello!
+  &lt;/h1&gt;
+);
+
+const element = React.createElement(
+  'h1',
+  {className: 'heading'},
+  'Hello!'
+);
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Typechecking props with PropTypes</h3>
+<pre><code class="language-javascript">// Use PropTypes
+import PropTypes from 'prop-types';
+</code></pre>
+<pre><code class="language-javascript">// Prop is an optional array
+MyComponent.propTypes = {
+  optionalArray: PropTypes.array,
+};
+</code></pre>
+<pre><code class="language-javascript">// Prop is an optional boolean
+MyComponent.propTypes = {
+  optionalBool: PropTypes.bool,
+};
+</code></pre>
+<pre><code class="language-javascript">// Prop is an optional function
+MyComponent.propTypes = {
+  optionalFunc: PropTypes.func,
+};
+</code></pre>
+<pre><code class="language-javascript">// Prop is an optional number (integer, float...)
+MyComponent.propTypes = {
+  optionalNumber: PropTypes.number,
+};
+</code></pre>
+<pre><code class="language-javascript">// Prop is an optional object
+MyComponent.propTypes = {
+  optionalObject: PropTypes.object,
+};
+</code></pre>
+<pre><code class="language-javascript">// Prop is an optional string
+MyComponent.propTypes = {
+  optionalString: PropTypes.string,
+};
+</code></pre>
+<pre><code class="language-javascript">// Prop is an optional symbol
+MyComponent.propTypes = {
+  optionalSymbol: PropTypes.symbol,
+};
+</code></pre>
+<pre><code class="language-javascript">// Prop is an optional node (numbers, strings, elements, array, fragment)
+MyComponent.propTypes = {
+  optionalNode: PropTypes.node,
+};
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Create React App</h3>
+<pre><code class="language-bash"># Create new app
+create-react-app my-app
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h3>Fetch datas</h3>
+<pre><code class="language-javascript">// Use componentDidMount hook with fetch
+class PostsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {posts: []};
+  }
+
+  componentDidMount() {
+    fetch('https://example.com/posts')
+      .then(response =&gt; response.json())
+      .then(data =&gt; this.setState({ posts: data.posts }));
+      .catch(error =&gt; console.log(error));
+  }
+}
+</code></pre>
+<pre><code class="language-javascript">// Use Axios library to fetch datas
+import axios from 'axios';
+
+componentDidMount() {
+  axios.get('/post', {
+    params: {ID: 123}
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>
+<h2>2 - Redux</h2>
+<h3>Install Redux</h3>
+<pre><code class="language-bash">npm install --save redux
+# Install react binding
+npm install --save react-redux
+# Install dev tools
+npm install --save-dev redux-devtools
+</code></pre>
+<h3>Actions</h3>
+<pre><code class="language-javascript">// Declare action type
+const SUBMIT_FORM = 'SUBMIT_FORM'
+</code></pre>
+<pre><code class="language-javascript">// Action shape with payload
+{
+  type: SUBMIT_FORM,
+  payload: {
+    firstName: 'John',
+    lastName: 'Doe',
+  }
+}
+</code></pre>
+<pre><code class="language-javascript">// Action shape without payload
+{
+  type: SUBMIT_FORM,
+}
+</code></pre>
+<pre><code class="language-javascript">// Declare action creator
+function submitForm(formData) {
+  return {
+    type: SUBMIT_FORM,
+    payload: {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+    }
+  }
+}
+</code></pre>
+<h3>Reducers</h3>
+<pre><code class="language-javascript">// Declare an initial state
+const initialState = {
+  firstName: '',
+  lastName: '',
+  city: '',
+}
+</code></pre>
+<pre><code class="language-javascript">// Declare a minimal reducer
+function userReducer(state = initialState, action) {
+  return state;
+}
+</code></pre>
+<pre><code class="language-javascript">// Handle action in reducer
+function userReducer(state = initialState, action) {
+  switch (action.type) {
+   case SUBMIT_FORM:
+     return {
+       ...state,
+       firstName: action.payload.firstName,
+       lastName: action.payload.lastName,
+       city: action.payload.city,
+     };
+   default:
+     return state;
+ }
+}
+</code></pre>
+<p><strong><a href="#table-of-contents">⬆ Go to top</a></strong></p>

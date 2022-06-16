@@ -1,7 +1,7 @@
 const fs = require('fs');
-const data = fs.readFileSync('redme.md', 'utf8');
+const data = fs.readFileSync('readme.md', 'utf8');
 
 var md = require('markdown-it')()
 var result = md.render(data);
 
-fs.writeFile("react.html",result,err=>console.log(err) ); 
+fs.writeFile("readme.html",result,err=>console.log(err) ); 
